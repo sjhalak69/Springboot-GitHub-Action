@@ -4,7 +4,6 @@ COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-
 FROM eclipse-temurin:17-jre-alpine AS runner
 RUN apk add --no-cache nginx
 WORKDIR /app
