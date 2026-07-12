@@ -41,10 +41,16 @@ jobs:
     steps:
       - name: Deploy on EC2
         run: |
+          rm -rf /home/runner/.ssh
+          mkdir -p //home/runner/.ssh
+          chmod 700 /home/runner/.ssh
+
           eval $(ssh-agent -s)
           echo "${{ secrets.EC2_SSH_KEY }}" | tr -d '\r' | ssh-add -
-          mkdir -p ~/.ssh 
-          chmod 700 ~/.ssh 
+          
+          touch /home/runner/.ssh/known_hosts 
+          chmod 600 /home/runner/.ssh/known_hosts 
+        
           ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/~/.ssh/known_hosts
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
 
