@@ -70,4 +70,3 @@ jobs:
 
             sudo docker logs spring-nginx-app
           EOF
-
