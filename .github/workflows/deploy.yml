@@ -53,21 +53,21 @@ jobs:
 
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin 
 
-          docker stop spring-nginx-app || true
-          docker rm spring-nginx-app || true
+          sudo docker stop spring-nginx-app || true
+          sudo docker rm spring-nginx-app || true
 
-          docker pull ${{ env.REGISTRY }}/$LOWER_IMAGE_NAME:latest 
+          sudo docker pull ${{ env.REGISTRY }}/$LOWER_IMAGE_NAME:latest 
 
-          docker run -d \
+          sudo docker run -d \
             --name spring-nginx-app \
             --restart always \
             --network hosts \
             ${{ env.REGISTRY }}/$LOWER_IMAGE_NAME:latest 
 
-            docker image prune -f 
+            sudo docker image prune -f 
 
-            docker ps --filter "name=spring-nginx-app"
+            sudo docker ps --filter "name=spring-nginx-app"
 
-            docker logs spring-nginx-app
+            sudo docker logs spring-nginx-app
           EOF
 
