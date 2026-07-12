@@ -46,7 +46,7 @@ jobs:
           mkdir -p ~/.ssh 
           chmod 700 ~/.ssh 
           ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/~/.ssh/known_hosts
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << ''EOF'
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
 
           LOWER_IMAGE_NAME=$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
 
