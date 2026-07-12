@@ -5,8 +5,9 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 
-FROM eclipse-temurin:17-jre-alpine AS runner
+FROM eclipse-temurin:17-jre AS runner
 RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 COPY nginx.conf /etc/nginx/nginx.conf
