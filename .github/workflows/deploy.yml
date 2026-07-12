@@ -61,7 +61,7 @@ jobs:
           sudo docker run -d \
             --name spring-nginx-app \
             --restart always \
-            --network hosts \
+            -p 80:80 \
             ${{ env.REGISTRY }}/$LOWER_IMAGE_NAME:latest 
 
             sudo docker image prune -f 

@@ -10,4 +10,4 @@ WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
-CMD java -jar app.jar & nginx -g "daemon off;"
+ENTRYPOINT ["/bin/bash","-c","java -jar app.jar & nginx -g 'daemon off;'"]
