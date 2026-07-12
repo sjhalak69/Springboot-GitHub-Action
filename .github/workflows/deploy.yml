@@ -66,5 +66,5 @@ jobs:
             docker ps --filter "name=spring-nginx-app"
 
             docker logs spring-nginx-app
-          EOF   
+          EOF
 
